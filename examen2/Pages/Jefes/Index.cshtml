@@ -1,0 +1,98 @@
+﻿@page
+@model examen2.Pages.Jefes.IndexModel
+@{
+    ViewData["Title"] = "Jefes - Gestión de Proyectos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-success mb-0">Jefes de Proyecto</h2>
+        <a asp-page="/Proyectos/Index" class="btn btn-outline-success">Ir a Proyectos</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Model.ErrorMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-success">
+                <div class="card-header bg-success text-white">
+                    <strong>Registrar Nuevo Jefe</strong>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label asp-for="NuevoJefe.Nombre" class="form-label">Nombre</label>
+                            <input asp-for="NuevoJefe.Nombre" class="form-control" placeholder="Ej. Carlos Mendoza" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NuevoJefe.Cargo" class="form-label">Cargo</label>
+                            <input asp-for="NuevoJefe.Cargo" class="form-control" placeholder="Ej. Líder Técnico" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="NuevoJefe.Correo" class="form-label">Correo</label>
+                            <input asp-for="NuevoJefe.Correo" type="email" class="form-control" placeholder="correo@empresa.com" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Guardar Jefe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow-sm border-success">
+                <div class="card-header bg-success bg-opacity-10 text-success">
+                    <strong>Listado de Jefes (@Model.Jefes.Count)</strong>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0 align-middle">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Cargo</th>
+                                    <th>Correo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Jefes.Count == 0)
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted py-4">No hay jefes registrados.</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var jefe in Model.Jefes)
+                                    {
+                                        <tr>
+                                            <td class="fw-semibold">@jefe.Nombre</td>
+                                            <td>@jefe.Cargo</td>
+                                            <td>@jefe.Correo</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

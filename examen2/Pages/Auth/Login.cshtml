@@ -1,0 +1,43 @@
+﻿@page
+@model examen2.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión - Gestión de Proyectos";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-success">
+            <div class="card-body p-4">
+                <h3 class="text-center text-success mb-4">Iniciar Sesión</h3>
+
+                @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                {
+                    <div class="alert alert-success">@Model.StatusMessage</div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@Model.ErrorMessage</div>
+                }
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label asp-for="Input.NombreUsuario" class="form-label">Usuario</label>
+                        <input asp-for="Input.NombreUsuario" class="form-control" autocomplete="username" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Input.Password" class="form-label">Contraseña</label>
+                        <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Entrar</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a asp-page="/Auth/Registro" class="text-success">¿No tienes cuenta? Regístrate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

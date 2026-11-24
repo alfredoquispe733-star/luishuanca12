@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Contratos/Contratos.csproj" Id="6b04d215-a511-492f-b986-ce37366c7be2" />
+  <Project Path="examen1/examen1.csproj" />
+  <Project Path="examen2/examen2.csproj" Id="88420883-e6d9-457a-bdcb-22a631ddf6e9" />
+</Solution>
